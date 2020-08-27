@@ -1,0 +1,39 @@
+#logo{
+    width: 250px;
+}
+#mail{
+    font-size: 150%;
+    margin: 20px;
+}
+h1{
+    text-align: center;
+    font-size: 300%;
+    font-family: 'Times New Roman', Times, serif;
+}
+#imgHome{
+    height: 400px;
+}
+
+.row{
+    width: 95%;
+    margin: 0;
+}
+p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 120%;
+}
+#texto{
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 120%;
+}
+form{
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+select{
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 5%;
+    margin-right: 5%;
+}
