@@ -64,9 +64,9 @@ function createTable(){
 
     for(let i=0; i<members.length; i++){
 
-        if(checkedParties.includes(members[i].party) && (members[i].state == state) ||state == "all"){
+        if(checkedParties.includes(members[i].party) && (members[i].state == state || state == "all")){
+            
             let tr= document.createElement("tr");
-
             let td1= document.createElement("td");
             let link= document.createElement("a");
             link.innerText=members[i].first_name + " " + members[i].middle_name + " " + members[i].last_name;
