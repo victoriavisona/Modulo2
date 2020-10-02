@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senate</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body id='senate'>
+
+    <div id="app">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Party</th>
+                    <th>Number of Reps</th>
+                    <th>Votes with Party</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Democrats</td>
+                    <td>{{stats.dem.length}}</td>
+                    <td>{{getAverage(stats.dem, "votes_with_party_pct")}}</td>
+                </tr>
+                <tr>
+                    <td>Republicans</td>
+                    <td>{{stats.rep.length}}</td>
+                    <td>{{getAverage(stats.rep, "votes_with_party_pct")}}</td>
+                </tr>
+                <tr>
+                    <td>Independents</td>
+                    <td>{{stats.ind.length}}</td>
+                    <td>{{getAverage(stats.ind, "votes_with_party_pct")}}</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>{{stats.total.length}}</td>
+                    <td>{{getAverage(stats.total, "votes_with_party_pct")}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+
+        <template v-if="members.length > 0">
+            <stats-table v-bind:members="members" prop1="votes_with_party_pct" prop2="total_votes" v-bind:asc="true"></stats-table>
+            <stats-table v-bind:members="members" prop1="votes_with_party_pct" prop2="total_votes" v-bind:asc="false"></stats-table>
+        </template>
+
+        
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/stats.js"></script>
+    
+</body>
+</html>

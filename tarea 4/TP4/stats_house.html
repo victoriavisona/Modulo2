@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senate</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id='house'>
+
+    <div id="app">
+
+        <header style="background-color: #bbe5e9">
+            <div class="container">
+                <div class="tgif" style="position: absolute; left: 500px; top: 33px; font-size: 40px;">TGIF</div>
+                <a href="#">
+                <img src="img/logo.png" alt="logo" style="width: 7%; margin: 5px;">
+                </a>
+                
+            </div>
+        </header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="home.html">Home</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Congress 113
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="senate.html">Senate</a>
+                        <a class="dropdown-item" href="house.html">House</a>
+                    </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Party Loyalty
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="stats_senate.html">Senate</a>
+                            <a class="dropdown-item" href="stats_house.html">House</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Attendance
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="attendance_senate.html">Senate</a>
+                            <a class="dropdown-item" href="attendance_house.html">House</a>
+                        </div>
+                    </li>
+                    
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="form-control mr-sm-2"><a href="mailto:info@tgif.net">info@tgif.net</a></div>
+                </form>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+
+            <div class="container">
+
+                <div class="row p-4">
+
+                    <div class="col-12 col-md-6">
+                        <div>
+                            <h1 class="titulo">Party Loyalty</h1>
+                            <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <h2>House at a Glance</h2>
+                        <table class="table table-striped">
+                            <thead style="background-color: #67DFE9">
+                                <tr>
+                                    <th>Party</th>
+                                    <th>Number of Reps</th>
+                                    <th>Votes with Party</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Democrats</td>
+                                    <td>{{stats.dem.length}}</td>
+                                    <td>{{getAverage(stats.dem, "votes_with_party_pct")}} &percnt;</td>
+                                </tr>
+                                <tr>
+                                    <td>Republicans</td>
+                                    <td>{{stats.rep.length}}</td>
+                                    <td>{{getAverage(stats.rep, "votes_with_party_pct")}} &percnt;</td>
+                                </tr>
+                                <tr>
+                                    <td>Independents</td>
+                                    <td>{{stats.ind.length}}</td>
+                                    <td>{{getAverage(stats.ind, "votes_with_party_pct")}} &percnt;</td>
+                                </tr>
+                                <tr style="background-color: #C0C0C0; font-weight: bold;">
+                                    <td>Total</td>
+                                    <td>{{stats.total.length}}</td>
+                                    <td>{{getAverage(stats.total, "votes_with_party_pct")}} &percnt;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            <div class="row">
+                <template v-if="members.length > 0">
+                    <stats-table-least v-bind:members="members" prop1="votes_with_party_pct" prop2="total_votes" :asc="true"></stats-table-least>
+                    <stats-table-most v-bind:members="members" prop1="votes_with_party_pct" prop2="total_votes" :asc="false"></stats-table-most>
+                </template>
+            </div>
+
+            </div>
+
+        </main>
+
+        <footer class="page-footer font-small blue navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <div class="footer-copyright text-center py-3">© 2016 TGIF | All Rights Reserved
+                </div>
+            </div>
+        </footer>
+
+        
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/stats.js"></script>
+    
+</body>
+</html>
